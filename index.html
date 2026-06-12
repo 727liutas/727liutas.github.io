@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Personal CV website for Min June Yang, an SNU student interested in robotics, robot learning, and trajectory optimization."
+      content="Personal CV website for Min June Yang, an SNU student interested in robotics, robot learning, and shipbuilding automation."
     />
     <title>Min June Yang | Personal CV</title>
     <style>
       :root {
-        --ink: #172026;
-        --muted: #5d6973;
-        --paper: #fbfbf8;
-        --panel: #ffffff;
-        --line: #d9e0df;
-        --teal: #0f766e;
-        --coral: #c7503f;
-        --gold: #b7791f;
-        --green: #4d7c3f;
-        --shadow: 0 18px 45px rgba(23, 32, 38, 0.1);
+        --primary: #1b1938;
+        --primary-deep: #0e0c1f;
+        --on-primary: #ffffff;
+        --ink: #292827;
+        --ink-mute: #73706d;
+        --ink-faint: #9a9794;
+        --canvas: #ffffff;
+        --canvas-soft: #fafaf8;
+        --violet-soft: #c9b4fa;
+        --teal-deep: #0e3030;
+        --teal-mid: #155555;
+        --hairline: #e8e4dd;
+        --hairline-dark: #3f3a52;
+        --on-dark-mute: #bcbac9;
+        --max: 1100px;
       }
 
       * {
@@ -33,10 +38,12 @@
       body {
         margin: 0;
         color: var(--ink);
-        background: var(--paper);
+        background: var(--canvas);
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", sans-serif;
-        line-height: 1.6;
+          "Segoe UI", Roboto, sans-serif;
+        font-size: 16px;
+        font-weight: 460;
+        line-height: 1.5;
       }
 
       a {
@@ -45,41 +52,44 @@
 
       .skip-link {
         position: absolute;
-        left: 1rem;
-        top: -4rem;
-        z-index: 10;
-        padding: 0.75rem 1rem;
-        background: var(--ink);
-        color: white;
-        border-radius: 6px;
+        left: 16px;
+        top: -80px;
+        z-index: 20;
+        padding: 12px 16px;
+        border-radius: 8px;
+        background: var(--violet-soft);
+        color: var(--primary);
+        font-weight: 700;
       }
 
       .skip-link:focus {
-        top: 1rem;
+        top: 16px;
       }
 
-      header {
+      .site-header {
         position: sticky;
         top: 0;
-        z-index: 5;
-        border-bottom: 1px solid var(--line);
-        background: rgba(251, 251, 248, 0.94);
-        backdrop-filter: blur(14px);
+        z-index: 10;
+        background: var(--primary);
+        border-bottom: 1px solid var(--hairline-dark);
       }
 
-      nav {
+      .nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 1rem;
-        max-width: 1120px;
+        gap: 24px;
+        max-width: var(--max);
         margin: 0 auto;
-        padding: 0.9rem 1.25rem;
+        padding: 16px 24px;
+        color: var(--on-primary);
       }
 
       .brand {
-        font-weight: 800;
+        font-size: 18px;
+        font-weight: 700;
         letter-spacing: 0;
+        text-decoration: none;
         white-space: nowrap;
       }
 
@@ -87,7 +97,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
-        gap: 0.35rem;
+        gap: 4px;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -95,266 +105,384 @@
 
       .nav-links a {
         display: inline-flex;
-        min-height: 2rem;
+        min-height: 36px;
         align-items: center;
-        padding: 0.35rem 0.65rem;
-        border-radius: 6px;
-        color: var(--muted);
-        font-size: 0.92rem;
+        padding: 8px 12px;
+        border-radius: 8px;
+        color: var(--on-dark-mute);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0;
         text-decoration: none;
       }
 
       .nav-links a:hover,
       .nav-links a:focus-visible {
-        color: var(--ink);
-        background: #eef5f3;
+        color: var(--on-primary);
+        background: rgba(201, 180, 250, 0.13);
         outline: none;
       }
 
-      main {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 3rem 1.25rem 4rem;
+      .hero {
+        overflow: hidden;
+        background:
+          linear-gradient(125deg, rgba(201, 180, 250, 0.24), transparent 44%),
+          linear-gradient(170deg, var(--primary) 0%, var(--primary) 58%, var(--primary-deep) 100%);
+        color: var(--on-primary);
       }
 
-      .hero {
+      .hero-inner {
         display: grid;
-        grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
-        gap: 2rem;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+        gap: 64px;
         align-items: center;
-        min-height: 70vh;
-        padding: 2rem 0 3rem;
+        max-width: var(--max);
+        min-height: 720px;
+        margin: 0 auto;
+        padding: 80px 24px 96px;
       }
 
       .eyebrow {
-        margin: 0 0 0.7rem;
-        color: var(--teal);
-        font-weight: 800;
+        margin: 0 0 24px;
+        color: var(--violet-soft);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0;
         text-transform: uppercase;
-        font-size: 0.76rem;
-        letter-spacing: 0.08em;
       }
 
       h1,
       h2,
       h3 {
-        line-height: 1.12;
+        margin: 0;
         letter-spacing: 0;
       }
 
       h1 {
-        max-width: 12ch;
-        margin: 0;
-        font-size: clamp(3rem, 8vw, 6.4rem);
+        max-width: 10ch;
+        font-size: 64px;
+        font-weight: 540;
+        line-height: 0.96;
       }
 
       h2 {
-        margin: 0 0 1.1rem;
-        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-size: 48px;
+        font-weight: 460;
+        line-height: 0.96;
       }
 
       h3 {
-        margin: 0 0 0.4rem;
-        font-size: 1.1rem;
+        font-size: 22px;
+        font-weight: 540;
+        line-height: 1.1;
+      }
+
+      p {
+        margin: 0;
       }
 
       .lead {
-        max-width: 66ch;
-        margin: 1.25rem 0 0;
-        color: var(--muted);
-        font-size: 1.1rem;
+        max-width: 680px;
+        margin-top: 24px;
+        color: var(--on-dark-mute);
+        font-size: 18px;
+        font-weight: 540;
+        line-height: 1.5;
       }
 
       .hero-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-top: 1.6rem;
+        gap: 12px;
+        margin-top: 32px;
       }
 
       .button {
         display: inline-flex;
-        min-height: 2.8rem;
+        min-height: 44px;
         align-items: center;
         justify-content: center;
-        padding: 0.75rem 1rem;
-        border: 1px solid var(--ink);
-        border-radius: 6px;
-        background: var(--ink);
-        color: white;
-        font-weight: 800;
+        padding: 12px 20px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0;
         text-decoration: none;
       }
 
-      .button.secondary {
-        background: transparent;
-        color: var(--ink);
+      .button.hero-button {
+        border-radius: 9999px;
+        background: var(--violet-soft);
+        color: var(--primary);
+      }
+
+      .button.dark {
+        background: var(--primary);
+        color: var(--on-primary);
+      }
+
+      .button.teal {
+        background: var(--canvas);
+        color: var(--teal-deep);
       }
 
       .button:hover,
       .button:focus-visible {
-        transform: translateY(-1px);
-        outline: 3px solid rgba(15, 118, 110, 0.22);
+        outline: 3px solid rgba(201, 180, 250, 0.35);
+        outline-offset: 2px;
       }
 
-      .portrait-wrap {
-        justify-self: end;
-        width: min(100%, 340px);
+      .portrait-shell {
+        position: relative;
+        align-self: stretch;
+        min-height: 520px;
       }
 
       .portrait {
-        display: block;
+        position: absolute;
+        inset: 0;
         width: 100%;
-        aspect-ratio: 4 / 5;
+        height: 100%;
         object-fit: cover;
-        border: 1px solid var(--line);
+        border: 1px solid var(--hairline-dark);
         border-radius: 8px;
-        box-shadow: var(--shadow);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
       }
 
-      .quick-facts {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
-        padding: 1rem 0 2rem;
+      .section {
+        padding: 96px 24px;
       }
 
-      .fact {
-        border-top: 4px solid var(--teal);
-        background: var(--panel);
-        padding: 1rem;
-        border-radius: 8px;
-        box-shadow: 0 10px 30px rgba(23, 32, 38, 0.06);
+      .section.soft {
+        background: var(--canvas-soft);
       }
 
-      .fact:nth-child(2) {
-        border-color: var(--coral);
-      }
-
-      .fact:nth-child(3) {
-        border-color: var(--gold);
-      }
-
-      .fact strong {
-        display: block;
-        margin-bottom: 0.3rem;
-      }
-
-      .fact span {
-        color: var(--muted);
-      }
-
-      section {
-        padding: 4rem 0 0;
-        scroll-margin-top: 5rem;
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
       }
 
       .section-grid {
         display: grid;
-        grid-template-columns: minmax(180px, 0.36fr) minmax(0, 0.64fr);
-        gap: 2rem;
+        grid-template-columns: minmax(220px, 0.38fr) minmax(0, 0.62fr);
+        gap: 64px;
         align-items: start;
       }
 
       .section-kicker {
-        margin: 0;
-        color: var(--muted);
-        font-weight: 800;
+        margin-bottom: 16px;
+        color: var(--ink-mute);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .section-note {
+        margin-top: 24px;
+        color: var(--ink-mute);
+        font-size: 18px;
+        font-weight: 540;
       }
 
       .stack {
         display: grid;
-        gap: 1rem;
+        gap: 16px;
       }
 
-      .item {
-        border: 1px solid var(--line);
+      .card,
+      .feature-row,
+      .contact-card {
+        border: 1px solid var(--hairline);
         border-radius: 8px;
-        background: var(--panel);
-        padding: 1.15rem;
+        background: var(--canvas);
       }
 
-      .item-header {
+      .card {
+        padding: 32px;
+      }
+
+      .feature-row {
+        padding: 24px;
+        background: var(--canvas-soft);
+      }
+
+      .card-header {
         display: flex;
         justify-content: space-between;
-        gap: 1rem;
-        margin-bottom: 0.6rem;
+        gap: 24px;
+        margin-bottom: 16px;
       }
 
       .meta {
-        color: var(--muted);
-        font-size: 0.94rem;
+        color: var(--ink-mute);
+        font-size: 14px;
+        line-height: 1.4;
       }
 
-      .item p {
-        margin: 0;
-        color: var(--muted);
+      .card p,
+      .feature-row p,
+      .contact-card p {
+        color: var(--ink-mute);
       }
 
-      .tags {
+      .pill-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 1rem;
+        gap: 8px;
+        margin-top: 20px;
       }
 
-      .tag {
+      .pill {
         display: inline-flex;
+        min-height: 34px;
         align-items: center;
-        min-height: 2rem;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 0.3rem 0.65rem;
-        background: #f5faf8;
-        color: #1f4f49;
-        font-size: 0.9rem;
-        font-weight: 700;
+        border: 1px solid var(--hairline);
+        border-radius: 9999px;
+        background: var(--canvas);
+        color: var(--ink);
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1;
       }
 
-      .two-column {
+      .project-grid,
+      .contact-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      .list {
-        margin: 0;
-        padding-left: 1.15rem;
-        color: var(--muted);
-      }
-
-      .list li + li {
-        margin-top: 0.55rem;
+        gap: 16px;
       }
 
       .contact-grid {
-        display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
       }
 
       .contact-card {
-        min-height: 8.5rem;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--panel);
-        padding: 1rem;
+        min-height: 150px;
+        padding: 24px;
       }
 
       .contact-card a {
-        color: var(--teal);
+        color: var(--primary);
         overflow-wrap: anywhere;
+        text-decoration: underline;
+        text-underline-offset: 3px;
       }
 
-      footer {
-        border-top: 1px solid var(--line);
-        padding: 2rem 1.25rem;
-        color: var(--muted);
-        text-align: center;
+      .course-list {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
       }
 
-      @media (max-width: 860px) {
-        nav {
+      .course-list li {
+        border-bottom: 1px solid var(--hairline);
+        padding-bottom: 12px;
+        color: var(--ink-mute);
+      }
+
+      .course-list li:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .teal-band {
+        background: var(--teal-deep);
+        color: var(--on-primary);
+        padding: 96px 24px;
+      }
+
+      .teal-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+
+      .teal-inner h2 {
+        max-width: 720px;
+        font-size: 28px;
+        font-weight: 540;
+        line-height: 1.14;
+      }
+
+      .teal-inner p {
+        margin-top: 16px;
+        color: var(--on-dark-mute);
+      }
+
+      .site-footer {
+        padding: 48px 24px;
+        background: var(--canvas);
+        color: var(--ink-mute);
+        font-size: 14px;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+
+      .ai-usage {
+        max-width: 420px;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .ai-usage strong {
+        color: var(--ink);
+      }
+
+      @media (max-width: 960px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          min-height: auto;
+          gap: 40px;
+          padding-top: 64px;
+        }
+
+        .portrait-shell {
+          min-height: 420px;
+          max-width: 380px;
+        }
+
+        h1 {
+          font-size: 48px;
+        }
+
+        h2 {
+          font-size: 36px;
+        }
+
+        .section-grid,
+        .project-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section {
+          padding: 72px 24px;
+        }
+
+        .teal-inner,
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .nav {
           align-items: flex-start;
           flex-direction: column;
         }
@@ -363,137 +491,128 @@
           justify-content: flex-start;
         }
 
-        .hero,
-        .section-grid,
-        .quick-facts,
-        .two-column,
-        .contact-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .hero {
-          min-height: auto;
-          padding-top: 1rem;
-        }
-
-        .portrait-wrap {
-          justify-self: start;
-          width: min(100%, 300px);
-        }
-
-        .item-header {
-          flex-direction: column;
-        }
-      }
-
-      @media (max-width: 520px) {
-        main {
-          padding-top: 1.5rem;
-        }
-
         h1 {
-          font-size: 2.7rem;
+          font-size: 36px;
+        }
+
+        h2 {
+          font-size: 28px;
+        }
+
+        h3 {
+          font-size: 20px;
+        }
+
+        .lead,
+        .section-note {
+          font-size: 16px;
+        }
+
+        .card,
+        .feature-row,
+        .contact-card {
+          padding: 24px;
+        }
+
+        .card-header {
+          flex-direction: column;
+          gap: 8px;
         }
 
         .button {
           width: 100%;
+        }
+
+        .portrait-shell {
+          min-height: 360px;
         }
       }
     </style>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
-    <header>
-      <nav aria-label="Primary navigation">
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
         <a class="brand" href="#top">Min June Yang</a>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
-          <li><a href="#cv">CV</a></li>
+          <li><a href="#resume">Resume</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#courses">Courses</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="#ai-usage">AI Usage</a></li>
         </ul>
       </nav>
     </header>
 
     <main id="main">
       <section class="hero" id="top" aria-labelledby="site-title">
-        <div>
-          <p class="eyebrow">Robotics | AI | Naval Architecture</p>
-          <h1 id="site-title">Min June Yang</h1>
-          <p class="lead">
-            I study Naval Architecture and Ocean Engineering at Seoul National
-            University with an interdisciplinary major in Artificial Intelligence.
-            My work focuses on robot learning, motion planning, and trajectory
-            optimization for mobile robots and manipulators in shipbuilding
-            environments.
-          </p>
-          <div class="hero-actions" aria-label="Profile links">
-            <a class="button" href="assets/cv.pdf">Download CV</a>
-            <a class="button secondary" href="#projects">View Projects</a>
-          </div>
-        </div>
-        <div class="portrait-wrap">
-          <img
-            class="portrait"
-            src="assets/profile.jpg"
-            alt="Portrait of Min June Yang"
-          />
-        </div>
-      </section>
-
-      <div class="quick-facts" aria-label="Profile highlights">
-        <div class="fact">
-          <strong>Education</strong>
-          <span>Seoul National University, B.S. expected Feb. 2027</span>
-        </div>
-        <div class="fact">
-          <strong>Focus</strong>
-          <span>Robot learning, path planning, trajectory optimization</span>
-        </div>
-        <div class="fact">
-          <strong>Tools</strong>
-          <span>Python, C++, MATLAB, Java, ROS2, Gazebo, Simulink</span>
-        </div>
-      </div>
-
-      <section id="about" aria-labelledby="about-title">
-        <div class="section-grid">
+        <div class="hero-inner">
           <div>
-            <p class="section-kicker">About</p>
-            <h2 id="about-title">Building reliable robots for hard places.</h2>
+            <p class="eyebrow">Robotics | AI | Naval Architecture</p>
+            <h1 id="site-title">Min June Yang</h1>
+            <p class="lead">
+              I am an undergraduate student at Seoul National University,
+              majoring in Naval Architecture and Ocean Engineering with an
+              interdisciplinary major in Artificial Intelligence. I am interested
+              in robot learning and planning methods for mobile robots and
+              manipulators in shipbuilding environments.
+            </p>
+            <div class="hero-actions">
+              <a class="button hero-button" href="assets/cv.pdf">Download CV</a>
+            </div>
           </div>
-          <div class="stack">
-            <div class="item">
-              <p>
-                My long-term goal is to develop planning and learning methods
-                that help mobile robots and mobile manipulators operate robustly
-                in unstructured shipyard conditions, including narrow passages,
-                stiffener traversal, localization uncertainty, and manipulation
-                tasks.
-              </p>
-            </div>
-            <div class="item">
-              <p>
-                I am especially interested in combining model-based planning,
-                trajectory optimization, imitation learning, and reinforcement
-                learning to bridge precise dynamics with practical field
-                autonomy.
-              </p>
-            </div>
+          <div class="portrait-shell">
+            <img
+              class="portrait"
+              src="assets/profile.jpg"
+              alt="Portrait of Min June Yang"
+            />
           </div>
         </div>
       </section>
 
-      <section id="cv" aria-labelledby="cv-title">
-        <div class="section-grid">
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="container section-grid">
           <div>
-            <p class="section-kicker">CV</p>
-            <h2 id="cv-title">Education, experience, and skills.</h2>
+            <p class="section-kicker">Personal Introduction</p>
+            <h2 id="about-title">Planning, learning, and control for robots.</h2>
           </div>
           <div class="stack">
-            <article class="item">
-              <div class="item-header">
+            <article class="feature-row">
+              <h3>Research Direction</h3>
+              <p>
+                My long-term goal is to build robust robot learning and planning
+                systems for unstructured industrial conditions such as narrow
+                passages, stiffener traversal, localization uncertainty, and
+                manipulation tasks in shipyards.
+              </p>
+            </article>
+            <article class="feature-row">
+              <h3>Academic Home</h3>
+              <p>
+                I study engineering, computing, and AI at SNU, with coursework
+                and projects spanning robotics, machine learning, control,
+                signal processing, probability, linear algebra, and software
+                implementation.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section soft" id="resume" aria-labelledby="resume-title">
+        <div class="container section-grid">
+          <div>
+            <p class="section-kicker">CV / Resume</p>
+            <h2 id="resume-title">Education, experience, and skills.</h2>
+            <p class="section-note">
+              A full PDF version is available through the resume link.
+            </p>
+          </div>
+          <div class="stack">
+            <article class="card">
+              <div class="card-header">
                 <div>
                   <h3>Seoul National University</h3>
                   <p class="meta">
@@ -501,127 +620,150 @@
                     Interdisciplinary Major in Artificial Intelligence
                   </p>
                 </div>
-                <span class="meta">Mar. 2020 - Present</span>
+                <p class="meta">Mar. 2020 - Present</p>
               </div>
               <p>
-                Academic focus in robotics, machine learning, reinforcement
-                learning, control, signal processing, probability, linear
-                algebra, and computing for maritime engineering applications.
+                Expected graduation: Feb. 2027. Academic focus includes
+                robotics, machine learning, reinforcement learning, control,
+                signal processing, and computing for maritime engineering
+                applications.
               </p>
             </article>
 
-            <article class="item">
-              <div class="item-header">
+            <article class="card">
+              <div class="card-header">
                 <div>
                   <h3>KAIST DRCD Hubo Lab / DRCD Lab</h3>
                   <p class="meta">
-                    Research Intern, Extended Lagrangian AGHF for manipulator
+                    Research Intern - Extended Lagrangian AGHF for manipulator
                     trajectory optimization
                   </p>
                 </div>
-                <span class="meta">Jan. 2026 - Feb. 2026</span>
+                <p class="meta">Jan. 2026 - Feb. 2026</p>
               </div>
               <p>
                 Developed MATLAB visualization and simulation tools for a planar
-                manipulator, implemented control-affine dynamics, and contributed
-                to a faster C++ trajectory-optimization solver using CasADi
-                symbolic differentiation.
+                manipulator, implemented control-affine dynamics, and
+                contributed to a C++ solver using CasADi symbolic
+                differentiation.
               </p>
             </article>
 
-            <article class="item">
-              <h3>Technical Skills</h3>
-              <div class="tags" aria-label="Technical skills">
-                <span class="tag">Python</span>
-                <span class="tag">C++</span>
-                <span class="tag">MATLAB</span>
-                <span class="tag">Java</span>
-                <span class="tag">ROS2</span>
-                <span class="tag">Gazebo</span>
-                <span class="tag">Simulink</span>
-                <span class="tag">Motion Planning</span>
-                <span class="tag">Trajectory Optimization</span>
-                <span class="tag">Reinforcement Learning</span>
+            <article class="card">
+              <h3>Skills</h3>
+              <div class="pill-row" aria-label="Skills">
+                <span class="pill">Python</span>
+                <span class="pill">C++</span>
+                <span class="pill">MATLAB</span>
+                <span class="pill">Java</span>
+                <span class="pill">ROS2</span>
+                <span class="pill">Gazebo</span>
+                <span class="pill">Simulink</span>
+                <span class="pill">CasADi</span>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="projects" aria-labelledby="projects-title">
-        <div class="section-grid">
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="container section-grid">
           <div>
-            <p class="section-kicker">Projects</p>
-            <h2 id="projects-title">Selected activities and projects.</h2>
+            <p class="section-kicker">Activities and Projects</p>
+            <h2 id="projects-title">Selected work.</h2>
           </div>
-          <div class="two-column">
-            <article class="item">
+          <div class="project-grid">
+            <article class="card">
               <h3>AGHF-Based Model-Based Control</h3>
               <p class="meta">MERO Robotics Club, SNU | Nov. 2025 - Dec. 2025</p>
               <p>
                 Built a MATLAB planner for a 2-DoF planar manipulator using an
                 AGHF-inspired trajectory optimization pipeline, inverse
-                kinematics, pseudospectral discretization, and Simulink tracking
-                with feedforward torque plus PD feedback.
+                kinematics, pseudospectral discretization, and Simulink
+                tracking.
               </p>
             </article>
-            <article class="item">
+            <article class="card">
               <h3>Localization-Aware Path Planning</h3>
               <p class="meta">How to Make a Robot with AI, SNU | Fall 2025</p>
               <p>
                 Contributed to a ROS2/Gazebo navigation project for a Unitree
-                Go1 robot by integrating localization, map-based A* planning,
-                obstacle inflation, launch files, and MPPI path tracking topics.
+                Go1 robot by integrating localization, A* planning, obstacle
+                inflation, launch files, and MPPI path tracking topics.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="courses" aria-labelledby="courses-title">
-        <div class="section-grid">
+      <section class="section soft" id="courses" aria-labelledby="courses-title">
+        <div class="container section-grid">
           <div>
-            <p class="section-kicker">Courses</p>
+            <p class="section-kicker">Course Plan</p>
             <h2 id="courses-title">Courses I plan to take.</h2>
           </div>
-          <div class="item">
-            <ul class="list">
+          <div class="card">
+            <ul class="course-list">
+              <li>Algorithms</li>
+              <li>Optimization Theory</li>
+              <li>Control Engineering</li>
               <li>Robot Learning and Reinforcement Learning</li>
               <li>Optimal Control and Trajectory Optimization</li>
               <li>Advanced Computer Vision for Robotics</li>
               <li>Probabilistic Robotics and State Estimation</li>
-              <li>Autonomous Systems for Industrial Environments</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section id="contact" aria-labelledby="contact-title">
-        <div class="section-grid">
+      <section class="section" id="contact" aria-labelledby="contact-title">
+        <div class="container section-grid">
           <div>
             <p class="section-kicker">Contact</p>
-            <h2 id="contact-title">Let us connect.</h2>
+            <h2 id="contact-title">Open to research conversations.</h2>
           </div>
           <div class="contact-grid">
-            <div class="contact-card">
+            <article class="contact-card">
               <h3>Email</h3>
-              <a href="mailto:727liutas@snu.ac.kr">727liutas@snu.ac.kr</a>
-            </div>
-            <div class="contact-card">
+              <p><a href="mailto:727liutas@snu.ac.kr">727liutas@snu.ac.kr</a></p>
+            </article>
+            <article class="contact-card">
               <h3>GitHub</h3>
-              <a href="https://github.com/727liutas">github.com/727liutas</a>
-            </div>
-            <div class="contact-card">
+              <p><a href="https://github.com/727liutas">github.com/727liutas</a></p>
+            </article>
+            <article class="contact-card">
               <h3>Resume</h3>
-              <a href="assets/cv.pdf">Open CV PDF</a>
-            </div>
+              <p><a href="assets/cv.pdf">Open CV PDF</a></p>
+            </article>
           </div>
+        </div>
+      </section>
+
+      <section class="teal-band" aria-labelledby="closing-title">
+        <div class="teal-inner">
+          <div>
+            <h2 id="closing-title">
+              Exploring robot intelligence for demanding industrial spaces.
+            </h2>
+            <p>
+              This site is a static GitHub Pages portfolio built with local
+              assets and a downloadable resume.
+            </p>
+          </div>
+          <a class="button teal" href="assets/cv.pdf">View Resume</a>
         </div>
       </section>
     </main>
 
-    <footer>
-      <p>© 2026 Min June Yang. Built as a static GitHub Pages CV site.</p>
+    <footer class="site-footer" id="ai-usage">
+      <div class="footer-inner">
+        <p>(c) 2026 Min June Yang. Static GitHub Pages CV site.</p>
+        <div class="ai-usage" aria-label="AI Usage">
+          <p><strong>AI Usage</strong></p>
+          <p>Tool: Codex</p>
+          <p>Prompt: Create a webpage with given assets and DESIGN.md</p>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
