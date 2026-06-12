@@ -1,8 +1,627 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Personal CV website for Min June Yang, an SNU student interested in robotics, robot learning, and trajectory optimization."
+    />
+    <title>Min June Yang | Personal CV</title>
+    <style>
+      :root {
+        --ink: #172026;
+        --muted: #5d6973;
+        --paper: #fbfbf8;
+        --panel: #ffffff;
+        --line: #d9e0df;
+        --teal: #0f766e;
+        --coral: #c7503f;
+        --gold: #b7791f;
+        --green: #4d7c3f;
+        --shadow: 0 18px 45px rgba(23, 32, 38, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 1rem;
+        top: -4rem;
+        z-index: 10;
+        padding: 0.75rem 1rem;
+        background: var(--ink);
+        color: white;
+        border-radius: 6px;
+      }
+
+      .skip-link:focus {
+        top: 1rem;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        border-bottom: 1px solid var(--line);
+        background: rgba(251, 251, 248, 0.94);
+        backdrop-filter: blur(14px);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0.9rem 1.25rem;
+      }
+
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0;
+        white-space: nowrap;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.35rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .nav-links a {
+        display: inline-flex;
+        min-height: 2rem;
+        align-items: center;
+        padding: 0.35rem 0.65rem;
+        border-radius: 6px;
+        color: var(--muted);
+        font-size: 0.92rem;
+        text-decoration: none;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--ink);
+        background: #eef5f3;
+        outline: none;
+      }
+
+      main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 3rem 1.25rem 4rem;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+        gap: 2rem;
+        align-items: center;
+        min-height: 70vh;
+        padding: 2rem 0 3rem;
+      }
+
+      .eyebrow {
+        margin: 0 0 0.7rem;
+        color: var(--teal);
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.12;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        max-width: 12ch;
+        margin: 0;
+        font-size: clamp(3rem, 8vw, 6.4rem);
+      }
+
+      h2 {
+        margin: 0 0 1.1rem;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+      }
+
+      h3 {
+        margin: 0 0 0.4rem;
+        font-size: 1.1rem;
+      }
+
+      .lead {
+        max-width: 66ch;
+        margin: 1.25rem 0 0;
+        color: var(--muted);
+        font-size: 1.1rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.6rem;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 2.8rem;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--ink);
+        border-radius: 6px;
+        background: var(--ink);
+        color: white;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        transform: translateY(-1px);
+        outline: 3px solid rgba(15, 118, 110, 0.22);
+      }
+
+      .portrait-wrap {
+        justify-self: end;
+        width: min(100%, 340px);
+      }
+
+      .portrait {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      .quick-facts {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        padding: 1rem 0 2rem;
+      }
+
+      .fact {
+        border-top: 4px solid var(--teal);
+        background: var(--panel);
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(23, 32, 38, 0.06);
+      }
+
+      .fact:nth-child(2) {
+        border-color: var(--coral);
+      }
+
+      .fact:nth-child(3) {
+        border-color: var(--gold);
+      }
+
+      .fact strong {
+        display: block;
+        margin-bottom: 0.3rem;
+      }
+
+      .fact span {
+        color: var(--muted);
+      }
+
+      section {
+        padding: 4rem 0 0;
+        scroll-margin-top: 5rem;
+      }
+
+      .section-grid {
+        display: grid;
+        grid-template-columns: minmax(180px, 0.36fr) minmax(0, 0.64fr);
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .section-kicker {
+        margin: 0;
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .stack {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .item {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 1.15rem;
+      }
+
+      .item-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .item p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.3rem 0.65rem;
+        background: #f5faf8;
+        color: #1f4f49;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .two-column {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .list {
+        margin: 0;
+        padding-left: 1.15rem;
+        color: var(--muted);
+      }
+
+      .list li + li {
+        margin-top: 0.55rem;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .contact-card {
+        min-height: 8.5rem;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 1rem;
+      }
+
+      .contact-card a {
+        color: var(--teal);
+        overflow-wrap: anywhere;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 2rem 1.25rem;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 860px) {
+        nav {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .nav-links {
+          justify-content: flex-start;
+        }
+
+        .hero,
+        .section-grid,
+        .quick-facts,
+        .two-column,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+          padding-top: 1rem;
+        }
+
+        .portrait-wrap {
+          justify-self: start;
+          width: min(100%, 300px);
+        }
+
+        .item-header {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 520px) {
+        main {
+          padding-top: 1.5rem;
+        }
+
+        h1 {
+          font-size: 2.7rem;
+        }
+
+        .button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
   <body>
-    <h1>
-      hi
-    </h1>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header>
+      <nav aria-label="Primary navigation">
+        <a class="brand" href="#top">Min June Yang</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#cv">CV</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="site-title">
+        <div>
+          <p class="eyebrow">Robotics | AI | Naval Architecture</p>
+          <h1 id="site-title">Min June Yang</h1>
+          <p class="lead">
+            I study Naval Architecture and Ocean Engineering at Seoul National
+            University with an interdisciplinary major in Artificial Intelligence.
+            My work focuses on robot learning, motion planning, and trajectory
+            optimization for mobile robots and manipulators in shipbuilding
+            environments.
+          </p>
+          <div class="hero-actions" aria-label="Profile links">
+            <a class="button" href="assets/cv.pdf">Download CV</a>
+            <a class="button secondary" href="#projects">View Projects</a>
+          </div>
+        </div>
+        <div class="portrait-wrap">
+          <img
+            class="portrait"
+            src="assets/profile.jpg"
+            alt="Portrait of Min June Yang"
+          />
+        </div>
+      </section>
+
+      <div class="quick-facts" aria-label="Profile highlights">
+        <div class="fact">
+          <strong>Education</strong>
+          <span>Seoul National University, B.S. expected Feb. 2027</span>
+        </div>
+        <div class="fact">
+          <strong>Focus</strong>
+          <span>Robot learning, path planning, trajectory optimization</span>
+        </div>
+        <div class="fact">
+          <strong>Tools</strong>
+          <span>Python, C++, MATLAB, Java, ROS2, Gazebo, Simulink</span>
+        </div>
+      </div>
+
+      <section id="about" aria-labelledby="about-title">
+        <div class="section-grid">
+          <div>
+            <p class="section-kicker">About</p>
+            <h2 id="about-title">Building reliable robots for hard places.</h2>
+          </div>
+          <div class="stack">
+            <div class="item">
+              <p>
+                My long-term goal is to develop planning and learning methods
+                that help mobile robots and mobile manipulators operate robustly
+                in unstructured shipyard conditions, including narrow passages,
+                stiffener traversal, localization uncertainty, and manipulation
+                tasks.
+              </p>
+            </div>
+            <div class="item">
+              <p>
+                I am especially interested in combining model-based planning,
+                trajectory optimization, imitation learning, and reinforcement
+                learning to bridge precise dynamics with practical field
+                autonomy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cv" aria-labelledby="cv-title">
+        <div class="section-grid">
+          <div>
+            <p class="section-kicker">CV</p>
+            <h2 id="cv-title">Education, experience, and skills.</h2>
+          </div>
+          <div class="stack">
+            <article class="item">
+              <div class="item-header">
+                <div>
+                  <h3>Seoul National University</h3>
+                  <p class="meta">
+                    B.S. in Naval Architecture and Ocean Engineering;
+                    Interdisciplinary Major in Artificial Intelligence
+                  </p>
+                </div>
+                <span class="meta">Mar. 2020 - Present</span>
+              </div>
+              <p>
+                Academic focus in robotics, machine learning, reinforcement
+                learning, control, signal processing, probability, linear
+                algebra, and computing for maritime engineering applications.
+              </p>
+            </article>
+
+            <article class="item">
+              <div class="item-header">
+                <div>
+                  <h3>KAIST DRCD Hubo Lab / DRCD Lab</h3>
+                  <p class="meta">
+                    Research Intern, Extended Lagrangian AGHF for manipulator
+                    trajectory optimization
+                  </p>
+                </div>
+                <span class="meta">Jan. 2026 - Feb. 2026</span>
+              </div>
+              <p>
+                Developed MATLAB visualization and simulation tools for a planar
+                manipulator, implemented control-affine dynamics, and contributed
+                to a faster C++ trajectory-optimization solver using CasADi
+                symbolic differentiation.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>Technical Skills</h3>
+              <div class="tags" aria-label="Technical skills">
+                <span class="tag">Python</span>
+                <span class="tag">C++</span>
+                <span class="tag">MATLAB</span>
+                <span class="tag">Java</span>
+                <span class="tag">ROS2</span>
+                <span class="tag">Gazebo</span>
+                <span class="tag">Simulink</span>
+                <span class="tag">Motion Planning</span>
+                <span class="tag">Trajectory Optimization</span>
+                <span class="tag">Reinforcement Learning</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-title">
+        <div class="section-grid">
+          <div>
+            <p class="section-kicker">Projects</p>
+            <h2 id="projects-title">Selected activities and projects.</h2>
+          </div>
+          <div class="two-column">
+            <article class="item">
+              <h3>AGHF-Based Model-Based Control</h3>
+              <p class="meta">MERO Robotics Club, SNU | Nov. 2025 - Dec. 2025</p>
+              <p>
+                Built a MATLAB planner for a 2-DoF planar manipulator using an
+                AGHF-inspired trajectory optimization pipeline, inverse
+                kinematics, pseudospectral discretization, and Simulink tracking
+                with feedforward torque plus PD feedback.
+              </p>
+            </article>
+            <article class="item">
+              <h3>Localization-Aware Path Planning</h3>
+              <p class="meta">How to Make a Robot with AI, SNU | Fall 2025</p>
+              <p>
+                Contributed to a ROS2/Gazebo navigation project for a Unitree
+                Go1 robot by integrating localization, map-based A* planning,
+                obstacle inflation, launch files, and MPPI path tracking topics.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="courses" aria-labelledby="courses-title">
+        <div class="section-grid">
+          <div>
+            <p class="section-kicker">Courses</p>
+            <h2 id="courses-title">Courses I plan to take.</h2>
+          </div>
+          <div class="item">
+            <ul class="list">
+              <li>Robot Learning and Reinforcement Learning</li>
+              <li>Optimal Control and Trajectory Optimization</li>
+              <li>Advanced Computer Vision for Robotics</li>
+              <li>Probabilistic Robotics and State Estimation</li>
+              <li>Autonomous Systems for Industrial Environments</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="section-grid">
+          <div>
+            <p class="section-kicker">Contact</p>
+            <h2 id="contact-title">Let us connect.</h2>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3>Email</h3>
+              <a href="mailto:727liutas@snu.ac.kr">727liutas@snu.ac.kr</a>
+            </div>
+            <div class="contact-card">
+              <h3>GitHub</h3>
+              <a href="https://github.com/727liutas">github.com/727liutas</a>
+            </div>
+            <div class="contact-card">
+              <h3>Resume</h3>
+              <a href="assets/cv.pdf">Open CV PDF</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Min June Yang. Built as a static GitHub Pages CV site.</p>
+    </footer>
   </body>
 </html>
